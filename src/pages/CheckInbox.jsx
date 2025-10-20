@@ -36,7 +36,7 @@ const CheckInbox = () => {
 
           {/* Open Inbox Button */}
           <div className="flex justify-center mb-8 sm:mb-10">
-            <button className="group cursor-pointer bg-[#053235] hover:bg-teal-800 text-[#e6fdf3] font-medium px-20 py-3 rounded-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center">
+            <button className="group cursor-pointer bg-[#053235] hover:bg-teal-800 text-[#e6fdf3] font-medium px-20 py-3 rounded-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center" onClick={()=>navigate('/sign-up')}>
               Open Inbox
             </button>
           </div>
