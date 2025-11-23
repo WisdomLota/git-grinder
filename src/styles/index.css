@@ -1,0 +1,18 @@
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+aside::-webkit-scrollbar,
+nav::-webkit-scrollbar,
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+aside,
+nav,
+.scrollbar-hide {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}

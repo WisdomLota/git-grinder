@@ -73,9 +73,11 @@ const SignUp = () => {
   };
 
   const handleTeammateChange = (index, value) => {
-    const newTeammates = [...formData.teammates];
-    newTeammates[index] = value;
-    setFormData(prev => ({ ...prev, teammates: newTeammates }));
+    setFormData(prev => {
+      const newTeammates = [...prev.teammates];
+      newTeammates[index] = value;
+      return { ...prev, teammates: newTeammates };
+    });
   };
 
   const nextStep = () => {
@@ -386,6 +388,7 @@ const SignUp = () => {
               {formData.teammates.map((email, index) => (
                 <input
                   key={index}
+                  autoComplete={`email-${index}`}
                   type="email"
                   value={email}
                   onChange={(e) => handleTeammateChange(index, e.target.value)}
