@@ -4,6 +4,8 @@ import GitImagePattern from "../assets/gitImagePattern.png";
 import GitImagePattern2 from "../assets/gitImagePattern2.png";
 import GitImagePattern3 from "../assets/gitImagePattern3.png";
 import GitImagePattern4 from "../assets/gitImagePattern4.png";
+import MainDashboard from './MainDashboard';
+import { useNavigate } from 'react-router-dom';
 
 const GitPattern = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none w-full h-full">
@@ -40,6 +42,8 @@ const SignUp = () => {
     grinderGoal: '',
     firstAction: ''
   });
+
+  const navigate = useNavigate();
 
   const generateContributionGrid = (density) => {
     const grid = [];
@@ -508,11 +512,11 @@ const SignUp = () => {
             </div>
 
             <div className="flex items-center justify-between">
-              <button onClick={skipStep} className="text-gray-100 text-lg hover:text-white transition-colors">
+              <button className="text-gray-100 text-lg hover:text-white transition-colors" onClick={() => navigate('/dashboard')}>
                 Skip
               </button>
               <button
-                onClick={nextStep}
+                onClick={() => navigate('/dashboard')}
                 className="px-16 py-3 bg-[#01ec87] hover:bg-emerald-500 text-gray-900 font-semibold text-lg rounded-lg transition-all cursor-pointer"
               >
                 Finish
@@ -529,15 +533,7 @@ const SignUp = () => {
 
   // Step 8: Welcome Screen
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-800 to-teal-900 relative overflow-hidden">
-      <GitPattern4 />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center text-white px-4">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Welcome to Git Grinder!</h1>
-          <p className="text-xl sm:text-2xl text-gray-200">Let's start grinding</p>
-        </div>
-      </div>
-    </div>
+    <MainDashboard />
   );
 };
 

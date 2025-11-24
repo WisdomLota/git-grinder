@@ -40,7 +40,7 @@ const Button = ({ children, variant = 'primary', size = 'md', className = '', on
   );
 };
 
-const ProjectCard = ({ title, authors, thumbnail, onSelect, isSelected }) => (
+const ProjectCard = ({ title, status, thumbnail, onSelect, isSelected }) => (
   <div className="group relative bg-[#1b1f1f] rounded-lg overflow-hidden hover:border-2 hover:border-[#01ec87] transition-all cursor-pointer">
     <div className="aspect-video bg-gradient-to-br from-teal-800 to-teal-900 relative overflow-hidden">
       {thumbnail}
@@ -56,7 +56,7 @@ const ProjectCard = ({ title, authors, thumbnail, onSelect, isSelected }) => (
       </div>
       <div className=''>
         <h3 className="text-[#e6fdf3] font-semibold text-lg mb-2">{title}</h3>
-        <p className="text-gray-200 text-sm mb-3">{authors}</p>
+        <p className="text-gray-200 text-sm mb-3">{status}</p>
       </div>
     </div>
   </div>
@@ -243,7 +243,7 @@ const GitPatternThumbnail = ({ variant }) => {
 };
 
 const TourBanner = ({ onClose, onTakeTour }) => (
-  <div className="fixed bottom-2 right-6 max-w-md bg-[#01ec87] rounded-lg p-8 shadow-2xl z-50">
+  <div className="fixed bottom-2 md:right-20 max-w-md bg-[#01ec87] rounded-lg p-8 shadow-2xl z-50">
     <button 
       onClick={onClose}
       className="absolute top-3 right-3 text-gray-900 hover:text-gray-700"
@@ -277,8 +277,8 @@ const MainDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const projects = [
-    { id: 1, title: 'Ekda mobile app', authors: 'Edited 10 days ago', likes: '2.5k', views: '89.3k' },
-    { id: 2, title: 'Ekda mobile app', authors: 'Edited 10 days ago', likes: '2.5k', views: '89.3k' }
+    { id: 1, title: 'Ekda mobile app', status: 'Edited 10 days ago' },
+    { id: 2, title: 'Ekda mobile app', status: 'Edited 10 days ago' }
   ];
 
   const toggleProject = (id) => {
@@ -385,6 +385,9 @@ const MainDashboard = () => {
             ))}
           </div>
         </div>
+        <button className="absolute bottom-3 right-3 w-12 h-12 rounded-full bg-[#324b3f] text-[#e6fdf3] flex items-center justify-center hover:bg-gray-600">
+          ?
+        </button>
       </main>
 
       {/* Tour Banner */}
