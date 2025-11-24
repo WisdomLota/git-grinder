@@ -62,7 +62,7 @@ const ProjectCard = ({ title, status, thumbnail, onSelect, isSelected }) => (
   </div>
 );
 
-const Sidebar = ({ isOpen, onClose }) => (
+const Sidebar = ({ isOpen, onClose, showAccountMenu, setShowAccountMenu, showNotifications, setShowNotifications, setShowPlansModal, seseGrindExpanded, setSeseGrindExpanded }) => (
   <>
     {/* Mobile Overlay */}
     {isOpen && (
@@ -85,15 +85,17 @@ const Sidebar = ({ isOpen, onClose }) => (
     }}>
       {/* User Profile */}
       <div className="p-4 border-b border-[#324b3f]">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-[#e6fdf3]"></div>
-            <div className="flex items-center gap-2">
-              <span className="text-[#e6fdf3] font-semibold">Sese</span>
-              <ChevronDown size={16} className="text-[#e6fdf3]" />
-            </div>
+        <div className="flex items-center gap-3 cursor-pointer mb-4" onClick={() => setShowAccountMenu(!showAccountMenu)}>
+          <div className="w-12 h-12 rounded-full bg-[#e6fdf3]"></div>
+          <div className="flex items-center gap-2">
+            <span className="text-[#e6fdf3] font-semibold">Sese</span>
+            <ChevronDown size={16} className="text-[#e6fdf3]" />
           </div>
-          <Bell size={20} className="text-gray-400 cursor-pointer hover:text-[#e6fdf3]" />
+          <Bell 
+            size={20} 
+            className="text-gray-400 cursor-pointer hover:text-[#e6fdf3] flex justify-end ml-auto" 
+            onClick={() => setShowNotifications(!showNotifications)}
+          />
         </div>
         
         {/* Search */}
@@ -117,19 +119,21 @@ const Sidebar = ({ isOpen, onClose }) => (
         {/* Sese's grind section */}
         <div className="mb-6 text-[#e6fdf3] border-b border-[#324b3f] px-4 pb-2">
           <div className="flex items-center justify-between mb-2 px-2">
-            <div className="flex items-center gap-2 cursor-pointer">
+            <div className="flex items-center gap-2 cursor-pointer" onClick={() => setSeseGrindExpanded(!seseGrindExpanded)}>
               <div className="w-6 h-6 rounded-full bg-[#e6fdf3]"></div>
               <span className="text-[#e6fdf3] font-medium">Sese's grind</span>
-              <ChevronDown size={16} className="text-gray-400" />
+              <ChevronDown size={16} className={`text-gray-400 transition-transform ${seseGrindExpanded ? '' : '-rotate-90'}`} />
             </div>
             <span className="text-xs bg-[#324b3f] text-[#e6fdf3] px-2 py-1 rounded">Free</span>
           </div>
-          <div className="space-y-1 ml-8">
-            <NavItem iconImg={selfGrindProjectsIcon} text="Self grind projects" active />
-            <NavItem iconImg={opensourcegrinderIcon} text="Open source grinder projects" />
-            <NavItem iconImg={brainstormIcon} text="Brainstorm" />
-            <NavItem iconImg={trashIcon} text="Trash" />
-          </div>
+          {seseGrindExpanded && (
+            <div className="space-y-1 ml-8">
+              <NavItem iconImg={selfGrindProjectsIcon} text="Self grind projects" active />
+              <NavItem iconImg={opensourcegrinderIcon} text="Open source grinder projects" />
+              <NavItem iconImg={brainstormIcon} text="Brainstorm" />
+              <NavItem iconImg={trashIcon} text="Trash" />
+            </div>
+          )}
         </div>
 
         {/* Upgrade Section */}
@@ -141,7 +145,7 @@ const Sidebar = ({ isOpen, onClose }) => (
               <p className="text-[#e6fdf3] text-md text-center mb-4">
                 Upgrade to pro and take your grind to the next level.
               </p>
-              <Button variant="primary" className="w-full">
+              <Button variant="primary" className="w-full" onClick={() => setShowPlansModal(true)}>
                 View plans
               </Button>
             </div>
@@ -267,6 +271,183 @@ const TourBanner = ({ onClose, onTakeTour }) => (
   </div>
 );
 
+const AccountMenu = ({ onClose, onViewPlans }) => (
+  <div className="absolute top-20 left-4 w-64 bg-[#282d2d] border border-[#324b3f] rounded-lg shadow-xl z-50 p-4">
+    <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#324b3f]">
+      <div className="w-16 h-16 rounded-full bg-[#e6fdf3]"></div>
+      <div>
+        <h3 className="text-[#e6fdf3] font-semibold">Sese</h3>
+        <p className="text-gray-400 text-sm">contact.sese.a@gmail.com</p>
+      </div>
+    </div>
+    
+    <button className="w-full flex items-center gap-3 px-3 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left">
+      <Grid3x3 size={18} />
+      <span>Grinder Goal</span>
+      <ChevronDown size={16} className="ml-auto rotate-[-90deg]" />
+    </button>
+    
+    <button className="w-full flex items-center gap-3 px-3 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left">
+      <Grid size={18} />
+      <span>Get grinder CLI tool</span>
+    </button>
+    
+    <button className="w-full flex items-center gap-3 px-3 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left">
+      <Grid size={18} />
+      <span>Settings</span>
+    </button>
+    
+    <div className="border-t border-[#324b3f] mt-3 pt-3">
+      <button className="w-full flex items-center gap-3 px-3 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left">
+        <div className="w-8 h-8 rounded-full bg-[#01ec87]"></div>
+        <div>
+          <p className="text-sm font-semibold">Create an open source profile</p>
+          <p className="text-xs text-gray-400">contact.sese.a@gmail.com</p>
+        </div>
+      </button>
+      
+      <button className="w-full flex items-center gap-3 px-3 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left mt-2">
+        <span>+ Add account</span>
+      </button>
+      
+      <button className="w-full flex items-center gap-3 px-3 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left mt-2">
+        <span>Log out</span>
+      </button>
+    </div>
+  </div>
+);
+
+const PlansModal = ({ onClose }) => (
+  <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+    <div className="bg-[#1b1f1f] rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-[#e6fdf3] text-3xl font-bold">Need more projects?</h2>
+        <button onClick={onClose} className="text-[#e6fdf3] hover:text-gray-400">
+          <X size={24} />
+        </button>
+      </div>
+      
+      <p className="text-gray-400 mb-8">The Starter plan only comes with 1 project, bit getting more is easy.</p>
+      
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* Starter Plan */}
+        <div className="border border-[#324b3f] rounded-lg p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <h3 className="text-[#e6fdf3] text-2xl font-bold">Starter</h3>
+            <span className="text-xs bg-[#324b3f] text-[#e6fdf3] px-2 py-1 rounded">Current Plan</span>
+          </div>
+          <p className="text-gray-400 text-sm mb-6">Best for anyone who wants to try out grinding with git grinder</p>
+          
+          <div className="space-y-3 mb-6">
+            <p className="text-[#e6fdf3] font-semibold">Free, but limited features</p>
+            <div className="flex items-start gap-2 text-gray-400 text-sm">
+              <span>✓</span>
+              <span>2 self-grind projects</span>
+            </div>
+            <div className="flex items-start gap-2 text-gray-400 text-sm">
+              <span>✓</span>
+              <span>1 open source grinder project</span>
+            </div>
+            <div className="flex items-start gap-2 text-gray-400 text-sm">
+              <span>✓</span>
+              <span>Limited grinder AI use</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Professional Plan */}
+        <div className="border-2 border-[#01ec87] rounded-lg p-6 bg-[#282d2d]">
+          <h3 className="text-[#e6fdf3] text-2xl font-bold mb-4">Professional</h3>
+          <p className="text-gray-400 text-sm mb-6">Best for indie teams to create and collaborate</p>
+          
+          <div className="mb-6">
+            <div className="flex items-baseline gap-2">
+              <span className="text-[#e6fdf3] text-4xl font-bold">$5</span>
+              <span className="text-gray-400">/mo</span>
+            </div>
+            <p className="text-gray-400 text-sm mt-2">● Full seat</p>
+          </div>
+          
+          <div className="space-y-3 mb-6">
+            <div className="flex items-start gap-2 text-[#e6fdf3] text-sm">
+              <span>✓</span>
+              <span>Unlimited self-grind projects</span>
+            </div>
+            <div className="flex items-start gap-2 text-[#e6fdf3] text-sm">
+              <span>✓</span>
+              <span>Unlimited open source grinder projects</span>
+            </div>
+            <div className="flex items-start gap-2 text-[#e6fdf3] text-sm">
+              <span>✓</span>
+              <span>Unlimited grinder AI use</span>
+            </div>
+            <button className="text-[#01ec87] text-sm hover:underline">
+              See all features →
+            </button>
+          </div>
+          
+          <Button variant="primary" className="w-full">
+            Upgrade to Professional
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const NotificationsPanel = ({ onClose }) => (
+  <div className="absolute top-20 right-4 w-96 max-h-[600px] bg-[#282d2d] border border-[#324b3f] rounded-lg shadow-xl z-50 overflow-hidden">
+    <div className="p-4 border-b border-[#324b3f] flex items-center justify-between">
+      <h3 className="text-[#e6fdf3] font-semibold text-lg">All notifications</h3>
+      <button onClick={onClose}>
+        <X size={20} className="text-[#e6fdf3]" />
+      </button>
+    </div>
+    
+    <div className="p-4 border-b border-[#324b3f] flex items-center justify-between">
+      <div className="flex gap-2">
+        <button className="px-4 py-1 bg-[#01ec87] text-gray-900 rounded-full text-sm font-medium">
+          All
+        </button>
+        <button className="px-4 py-1 text-[#e6fdf3] hover:bg-[#324b3f] rounded-full text-sm">
+          Unread (29)
+        </button>
+      </div>
+      <button className="text-[#01ec87] text-sm hover:underline">
+        Mark all as read
+      </button>
+    </div>
+    
+    <div className="overflow-y-auto max-h-[400px] scrollbar-hide">
+      <div className="p-3 border-b border-[#324b3f]">
+        <p className="text-gray-400 text-xs mb-2">Last 7 days</p>
+        
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div key={i} className="flex gap-3 p-3 hover:bg-[#324b3f] rounded-lg cursor-pointer mb-2">
+            <div className="w-10 h-10 rounded-full bg-[#e6fdf3] flex-shrink-0"></div>
+            <div className="flex-1">
+              <div className="flex items-start justify-between mb-1">
+                <p className="text-[#e6fdf3] font-semibold text-sm">Oryz</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-400 text-xs">Jul 23</span>
+                  <div className="w-2 h-2 rounded-full bg-[#01ec87]"></div>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm">Replied • Oryzon website</p>
+              <p className="text-[#e6fdf3] text-sm">Great Work Kome</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div className="p-3">
+        <p className="text-gray-400 text-xs mb-2">Older</p>
+        {/* Add more notifications here */}
+      </div>
+    </div>
+  </div>
+);
+
 // Main Dashboard Component
 const MainDashboard = () => {
   const [view, setView] = useState('grid');
@@ -275,6 +456,11 @@ const MainDashboard = () => {
   const [activeTab, setActiveTab] = useState('recent');
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  
+  const [showAccountMenu, setShowAccountMenu] = useState(false);
+  const [showPlansModal, setShowPlansModal] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [seseGrindExpanded, setSeseGrindExpanded] = useState(true); // Add this
 
   const projects = [
     { id: 1, title: 'Ekda mobile app', status: 'Edited 10 days ago' },
@@ -290,7 +476,17 @@ const MainDashboard = () => {
   return (
     <div className="flex h-screen bg-[#1b1f1f] overflow-hidden">
       {/* Sidebar */}
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar 
+        isOpen={sidebarOpen} 
+        onClose={() => setSidebarOpen(false)}
+        showAccountMenu={showAccountMenu}
+        setShowAccountMenu={setShowAccountMenu}
+        showNotifications={showNotifications}
+        setShowNotifications={setShowNotifications}
+        setShowPlansModal={setShowPlansModal}
+        seseGrindExpanded={seseGrindExpanded}
+        setSeseGrindExpanded={setSeseGrindExpanded}
+      />
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto scrollbar-hide">
@@ -326,8 +522,8 @@ const MainDashboard = () => {
                 onClick={() => setActiveTab('recent')}
                 className={`px-6 py-2 rounded-lg font-medium transition-colors ${
                   activeTab === 'recent'
-                    ? 'bg-[#1b1f1f] text-[#01ec87] border border-[#01ec87]'
-                    : 'bg-transparent text-gray-400 border-2 border-[#324b3f] hover:border-[#01ec87]'
+                    ? 'bg-[#32463f] text-[#e6fdf3] border border-[#01ec87]'
+                    : 'bg-[#1b1f1f] text-[#01ec87] border border-[#01ec87]'
                 }`}
               >
                 Recently Viewed
@@ -336,8 +532,8 @@ const MainDashboard = () => {
                 onClick={() => setActiveTab('shared')}
                 className={`px-6 py-2 rounded-lg font-medium transition-colors ${
                   activeTab === 'shared'
-                    ? 'bg-[#1b1f1f] text-[#01ec87] border border-[#01ec87]'
-                    : 'bg-transparent text-[#324b3f] border-2 border-[#324b3f] hover:border-[#01ec87]'
+                    ? 'bg-[#32463f] text-[#e6fdf3] border border-[#01ec87]'
+                    : 'bg-[#1b1f1f] text-[#01ec87] border border-[#01ec87]'
                 }`}
               >
                 Shared Projects
@@ -400,8 +596,16 @@ const MainDashboard = () => {
           }}
         />
       )}
-    </div>
-  );
-};
+
+      {/* Modals and Panels */}
+      {showAccountMenu && <AccountMenu onClose={() => setShowAccountMenu(false)} onViewPlans={() => {
+        setShowAccountMenu(false);
+        setShowPlansModal(true);
+      }} />}
+      {showPlansModal && <PlansModal onClose={() => setShowPlansModal(false)} />}
+      {showNotifications && <NotificationsPanel onClose={() => setShowNotifications(false)} />}
+          </div>
+        );
+      };
 
 export default MainDashboard;
