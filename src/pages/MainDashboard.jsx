@@ -12,7 +12,14 @@ import gitThumbnailPattern3 from '../assets/gitThumbailPattern3.png';
 import GGlogoDashboard from '../assets/GG-logo-Dashboard.png';
 import gridIcon from '../assets/gridIcon.svg';
 import listIcon from '../assets/listIcon.svg';
-import "../styles/index.css"
+import logoutIcon from '../assets/logout.svg';
+import plusIcon from '../assets/plusIcon.svg';
+import grinderGoalIcon from '../assets/grinderGoalIcon.svg';
+import cliDownloadIcon from '../assets/cliDownloadIcon.svg';
+import settingsIcon from '../assets/settingsIcon.svg';
+import plusIconBlack from '../assets/plusIconBlack.svg';
+import settingsIconWheel from '../assets/settingsIconWheel.svg';
+import "../styles/index.css";
 
 // Reusable Components
 const Button = ({ children, variant = 'primary', size = 'md', className = '', onClick, icon: Icon }) => {
@@ -74,7 +81,7 @@ const Sidebar = ({ isOpen, onClose, showAccountMenu, setShowAccountMenu, showNot
     
     {/* Sidebar */}
     <aside className={`
-      fixed lg:sticky top-0 left-0 h-screen w-76 bg-[#1b1f1f] border-r border-[#324b3f]
+      fixed lg:sticky top-0 left-0 h-screen w-84 bg-[#1b1f1f] border-r border-[#324b3f]
       flex flex-col z-50 transition-transform duration-300 overflow-y-auto scrollbar-hide
       ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
     `}
@@ -85,9 +92,9 @@ const Sidebar = ({ isOpen, onClose, showAccountMenu, setShowAccountMenu, showNot
     }}>
       {/* User Profile */}
       <div className="p-4 border-b border-[#324b3f]">
-        <div className="flex items-center gap-3 cursor-pointer mb-4" onClick={() => setShowAccountMenu(!showAccountMenu)}>
-          <div className="w-12 h-12 rounded-full bg-[#e6fdf3]"></div>
-          <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3 cursor-pointer mb-4">
+          <div className="w-12 h-12 rounded-full bg-[#e6fdf3]" onClick={() => setShowAccountMenu(!showAccountMenu)}></div>
+          <div className="flex items-center gap-2" onClick={() => setShowAccountMenu(!showAccountMenu)}>
             <span className="text-[#e6fdf3] font-semibold">Sese</span>
             <ChevronDown size={16} className="text-[#e6fdf3]" />
           </div>
@@ -145,7 +152,7 @@ const Sidebar = ({ isOpen, onClose, showAccountMenu, setShowAccountMenu, showNot
               <p className="text-[#e6fdf3] text-md text-center mb-4">
                 Upgrade to pro and take your grind to the next level.
               </p>
-              <Button variant="primary" className="w-full" onClick={() => setShowPlansModal(true)}>
+              <Button variant="primary" className="w-full cursor-pointer" onClick={() => setShowPlansModal(true)}>
                 View plans
               </Button>
             </div>
@@ -272,45 +279,47 @@ const TourBanner = ({ onClose, onTakeTour }) => (
 );
 
 const AccountMenu = ({ onClose, onViewPlans }) => (
-  <div className="absolute top-20 left-4 w-64 bg-[#282d2d] border border-[#324b3f] rounded-lg shadow-xl z-50 p-4">
-    <div className="flex items-center gap-3 mb-4 pb-4 border-b border-[#324b3f]">
+  <div className="absolute top-20 left-4 w-76 bg-[#1b1f1f] border border-[#324b3f] rounded-lg shadow-xl z-50 p-4">
+    <div className="flex flex-col items-center gap-3 mb-4 pb-4 border-b border-[#324b3f]">
       <div className="w-16 h-16 rounded-full bg-[#e6fdf3]"></div>
-      <div>
-        <h3 className="text-[#e6fdf3] font-semibold">Sese</h3>
-        <p className="text-gray-400 text-sm">contact.sese.a@gmail.com</p>
+      <div className='text-center'>
+        <h3 className="text-[#e6fdf3] font-semibold text-2xl">Sese</h3>
+        <p className="text-gray-200 text-md">contact.sese.a@gmail.com</p>
       </div>
     </div>
     
     <button className="w-full flex items-center gap-3 px-3 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left">
-      <Grid3x3 size={18} />
+      <img src={grinderGoalIcon} alt="git-grinder-icon" />
       <span>Grinder Goal</span>
       <ChevronDown size={16} className="ml-auto rotate-[-90deg]" />
     </button>
     
     <button className="w-full flex items-center gap-3 px-3 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left">
-      <Grid size={18} />
+      <img src={cliDownloadIcon} alt="cli-download" />
       <span>Get grinder CLI tool</span>
     </button>
     
     <button className="w-full flex items-center gap-3 px-3 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left">
-      <Grid size={18} />
+      <img src={settingsIcon} alt="settings-icon" />
       <span>Settings</span>
     </button>
     
     <div className="border-t border-[#324b3f] mt-3 pt-3">
-      <button className="w-full flex items-center gap-3 px-3 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left">
+      <button className="w-full flex items-center gap-3 px-2 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left">
         <div className="w-8 h-8 rounded-full bg-[#01ec87]"></div>
         <div>
-          <p className="text-sm font-semibold">Create an open source profile</p>
-          <p className="text-xs text-gray-400">contact.sese.a@gmail.com</p>
+          <p className="text-sm poppins-regular">Create an open source profile</p>
+          <p className="text-xs text-[#01ec87]">contact.sese.a@gmail.com</p>
         </div>
       </button>
       
       <button className="w-full flex items-center gap-3 px-3 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left mt-2">
-        <span>+ Add account</span>
+        <img src={plusIcon} alt="plus-icon" />
+        <span>Add account</span>
       </button>
       
       <button className="w-full flex items-center gap-3 px-3 py-2 text-[#e6fdf3] hover:bg-[#324b3f] rounded-lg text-left mt-2">
+        <img src={logoutIcon} alt="log-out" />
         <span>Log out</span>
       </button>
     </div>
@@ -319,36 +328,36 @@ const AccountMenu = ({ onClose, onViewPlans }) => (
 
 const PlansModal = ({ onClose }) => (
   <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
-    <div className="bg-[#1b1f1f] rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8">
+    <div className="bg-[#1b1f1f] rounded-lg max-w-5xl w-full max-h-[96vh] overflow-y-auto p-8">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-[#e6fdf3] text-3xl font-bold">Need more projects?</h2>
+        <h2 className="text-[#e6fdf3] poppins-bold text-3xl">Need more projects?</h2>
         <button onClick={onClose} className="text-[#e6fdf3] hover:text-gray-400">
           <X size={24} />
         </button>
       </div>
       
-      <p className="text-gray-400 mb-8">The Starter plan only comes with 1 project, bit getting more is easy.</p>
+      <p className="text-gray-200 mb-8">The Starter plan only comes with 1 project, bit getting more is easy.</p>
       
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 border border-[#324b3f] rounded-lg px-6">
         {/* Starter Plan */}
-        <div className="border border-[#324b3f] rounded-lg p-6">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="p-6 border-r border-[#324b3f]">
+          <div className="flex items-center gap-2 mb-2">
             <h3 className="text-[#e6fdf3] text-2xl font-bold">Starter</h3>
-            <span className="text-xs bg-[#324b3f] text-[#e6fdf3] px-2 py-1 rounded">Current Plan</span>
+            <span className="text-xs text-[#e6fdf3] px-2 py-1 rounded-lg border border-[#324b3f]">Current Plan</span>
           </div>
-          <p className="text-gray-400 text-sm mb-6">Best for anyone who wants to try out grinding with git grinder</p>
+          <p className="text-gray-200 text-md mb-12 md:mb-26">Best for anyone who wants to try out grinding with git grinder</p>
           
           <div className="space-y-3 mb-6">
-            <p className="text-[#e6fdf3] font-semibold">Free, but limited features</p>
-            <div className="flex items-start gap-2 text-gray-400 text-sm">
+            <p className="text-[#e6fdf3] font-semibold border-b border-[#32463f] pb-2 mb-6">Free, but limited features</p>
+            <div className="flex items-start gap-2 text-gray-200 text-sm">
               <span>✓</span>
               <span>2 self-grind projects</span>
             </div>
-            <div className="flex items-start gap-2 text-gray-400 text-sm">
+            <div className="flex items-start gap-2 text-gray-200 text-sm">
               <span>✓</span>
               <span>1 open source grinder project</span>
             </div>
-            <div className="flex items-start gap-2 text-gray-400 text-sm">
+            <div className="flex items-start gap-2 text-gray-200 text-sm">
               <span>✓</span>
               <span>Limited grinder AI use</span>
             </div>
@@ -356,16 +365,13 @@ const PlansModal = ({ onClose }) => (
         </div>
         
         {/* Professional Plan */}
-        <div className="border-2 border-[#01ec87] rounded-lg p-6 bg-[#282d2d]">
-          <h3 className="text-[#e6fdf3] text-2xl font-bold mb-4">Professional</h3>
-          <p className="text-gray-400 text-sm mb-6">Best for indie teams to create and collaborate</p>
+        <div className="p-6 border-l border-[#324b3f]">
+          <h3 className="text-[#e6fdf3] text-2xl font-bold mb-2">Professional</h3>
+          <p className="text-gray-200 text-md md:mb-20 mb-12">Best for indie teams to create and collaborate</p>
           
-          <div className="mb-6">
-            <div className="flex items-baseline gap-2">
-              <span className="text-[#e6fdf3] text-4xl font-bold">$5</span>
-              <span className="text-gray-400">/mo</span>
-            </div>
-            <p className="text-gray-400 text-sm mt-2">● Full seat</p>
+          <div className="pb-12 flex justify-between border-b border-[#324b3f] mb-6">
+            <p className="text-[#e6fdf3] text-2xl poppins-bold">$5/mo</p>
+            <p className="text-[#e6fdf3] text-2xl poppins-bold">● Full seat</p>
           </div>
           
           <div className="space-y-3 mb-6">
@@ -396,44 +402,44 @@ const PlansModal = ({ onClose }) => (
 );
 
 const NotificationsPanel = ({ onClose }) => (
-  <div className="absolute top-20 right-4 w-96 max-h-[600px] bg-[#282d2d] border border-[#324b3f] rounded-lg shadow-xl z-50 overflow-hidden">
+  <div className="absolute top-20 lg:left-72 md:left-60 left-4 w-88 max-h-[600px] bg-[#1b1f1f] border border-[#324b3f] rounded-lg shadow-xl z-50 overflow-hidden">
     <div className="p-4 border-b border-[#324b3f] flex items-center justify-between">
-      <h3 className="text-[#e6fdf3] font-semibold text-lg">All notifications</h3>
+      <h3 className="text-[#e6fdf3] font-semibold poppins-regular">All notifications</h3>
       <button onClick={onClose}>
-        <X size={20} className="text-[#e6fdf3]" />
+        <img src={settingsIconWheel} alt="settings-icon" />
       </button>
     </div>
     
     <div className="p-4 border-b border-[#324b3f] flex items-center justify-between">
       <div className="flex gap-2">
-        <button className="px-4 py-1 bg-[#01ec87] text-gray-900 rounded-full text-sm font-medium">
+        <button className="px-2 py-1 border-2 border-[#01ec87] text-[#e6fdf3] bg-[#b3f9db]/50 rounded-md text-sm poppins-regular">
           All
         </button>
-        <button className="px-4 py-1 text-[#e6fdf3] hover:bg-[#324b3f] rounded-full text-sm">
+        <button className="px-2 py-1 text-[#e6fdf3] hover:bg-[#324b3f] rounded-md text-sm poppins-regular">
           Unread (29)
         </button>
       </div>
-      <button className="text-[#01ec87] text-sm hover:underline">
+      <button className="text-[#01ec87] text-sm hover:underline poppins-regular">
         Mark all as read
       </button>
     </div>
     
-    <div className="overflow-y-auto max-h-[400px] scrollbar-hide">
+    <div className="overflow-y-auto max-h-[400px] scrollbar-hide poppins-regular">
       <div className="p-3 border-b border-[#324b3f]">
-        <p className="text-gray-400 text-xs mb-2">Last 7 days</p>
+        <p className="text-gray-200 text-xs mb-2">Last 7 days</p>
         
-        {[1, 2, 3, 4, 5, 6].map((i) => (
+        {[1, 2].map((i) => (
           <div key={i} className="flex gap-3 p-3 hover:bg-[#324b3f] rounded-lg cursor-pointer mb-2">
             <div className="w-10 h-10 rounded-full bg-[#e6fdf3] flex-shrink-0"></div>
             <div className="flex-1">
               <div className="flex items-start justify-between mb-1">
                 <p className="text-[#e6fdf3] font-semibold text-sm">Oryz</p>
                 <div className="flex items-center gap-2">
-                  <span className="text-gray-400 text-xs">Jul 23</span>
+                  <span className="text-gray-200 text-xs">Jul 23</span>
                   <div className="w-2 h-2 rounded-full bg-[#01ec87]"></div>
                 </div>
               </div>
-              <p className="text-gray-400 text-sm">Replied • Oryzon website</p>
+              <p className="text-gray-200 text-sm">Replied • Oryzon website</p>
               <p className="text-[#e6fdf3] text-sm">Great Work Kome</p>
             </div>
           </div>
@@ -441,7 +447,23 @@ const NotificationsPanel = ({ onClose }) => (
       </div>
       
       <div className="p-3">
-        <p className="text-gray-400 text-xs mb-2">Older</p>
+        <p className="text-gray-200 text-xs mb-2">Older</p>
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div key={i} className="flex gap-3 p-3 hover:bg-[#324b3f] rounded-lg cursor-pointer mb-2">
+            <div className="w-10 h-10 rounded-full bg-[#e6fdf3] flex-shrink-0"></div>
+            <div className="flex-1">
+              <div className="flex items-start justify-between mb-1">
+                <p className="text-[#e6fdf3] font-semibold text-sm">Oryz</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-200 text-xs">Jul 23</span>
+                  <div className="w-2 h-2 rounded-full bg-[#01ec87]"></div>
+                </div>
+              </div>
+              <p className="text-gray-200 text-sm">Replied • Oryzon website</p>
+              <p className="text-[#e6fdf3] text-sm">Great Work Kome</p>
+            </div>
+          </div>
+        ))}
         {/* Add more notifications here */}
       </div>
     </div>
@@ -503,10 +525,11 @@ const MainDashboard = () => {
               <h1 className="text-[#e6fdf3] text-xl poppins-regular font-semibold">Self Grind Projects</h1>
             </div>
             <Button variant="primary" icon={null} className="hidden sm:flex">
-              + Project
+              <img src={plusIconBlack} alt="plus-icon-black" className='w-4 h-4'/>
+              <p>New Project</p>
             </Button>
             <Button variant="primary" className="sm:hidden">
-              +
+                <img src={plusIconBlack} alt="plus-icon-black" className='w-4 h-4'/>
             </Button>
           </div>
         </header>
