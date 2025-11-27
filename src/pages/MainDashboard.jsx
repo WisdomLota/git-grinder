@@ -13,6 +13,8 @@ import Button from '../components/Button';
 import Sidebar from '../components/Sidebar';
 import AccountMenu from '../components/AccountMenu';
 import TourBanner from '../components/TourBanner';
+import ProfilePreviewModal from '../components/ProfilePreviewModal';
+import GrinderGoalModal from '../components/GrinderGoalModal';
 
 // Reusable Components
 const ProjectCard = ({ title, status, thumbnail, onSelect, isSelected }) => (
@@ -121,7 +123,10 @@ const MainDashboard = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showPlansModal, setShowPlansModal] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
-  const [seseGrindExpanded, setSeseGrindExpanded] = useState(true); // Add this
+  const [seseGrindExpanded, setSeseGrindExpanded] = useState(true);
+
+  const [showProfilePreview, setShowProfilePreview] = useState(true);
+  const [showGrinderGoal, setShowGrinderGoal] = useState(false);
 
   const projects = [
     { id: 1, title: 'Ekda mobile app', status: 'Edited 10 days ago' },
@@ -266,7 +271,26 @@ const MainDashboard = () => {
       }} />}
       {showPlansModal && <PlansModal onClose={() => setShowPlansModal(false)} />}
       {showNotifications && <NotificationsPanel onClose={() => setShowNotifications(false)} />}
-          </div>
+
+      {showProfilePreview && (
+        <ProfilePreviewModal 
+          onConfirm={() => {
+            setShowProfilePreview(false);
+            setShowGrinderGoal(true);
+          }}
+        />
+      )}
+      {showGrinderGoal && (
+        <GrinderGoalModal 
+          onClose={() => setShowGrinderGoal(false)}
+          onViewProgress={() => {
+            setShowGrinderGoal(false);
+            // Navigate to grinder progress page
+          }}
+          onNoted={() => setShowGrinderGoal(false)}
+        />
+      )}
+    </div>
         );
       };
 
