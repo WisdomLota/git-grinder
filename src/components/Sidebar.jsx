@@ -10,21 +10,23 @@ import gridIcon from '../assets/gridIcon.svg';
 import "../styles/index.css";
 import Button from '../components/Button';
 
-const NavItem = ({ iconImg: IconImg, text, active = false }) => (
-  <button className={`
-    w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-left poppins-medium text-xs
-    ${active ? 'bg-[#324b3f] text-[#e6fdf3]' : 'text-[#e6fdf3] hover:bg-[#324b3f]'}
-  `}>
-    {IconImg ? (
-      <img src={IconImg} alt={text} className="w-4 h-4" />
-    ) : (
-      <Grid size={20} className="text-gray-400" />
-    )}
-    <span>{text}</span>
-  </button>
-);
+const NavItem = ({ iconImg: IconImg, text, path, currentPath }) => {
+  const isActive = currentPath === path;
 
-const Sidebar = ({ isOpen, onClose, showAccountMenu, setShowAccountMenu, showNotifications, setShowNotifications, setShowPlansModal, seseGrindExpanded, setSeseGrindExpanded }) => {
+  return (
+    <button className={`
+      w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-left poppins-medium text-xs
+      ${isActive ? 'bg-[#324b3f] text-[#e6fdf3]' : 'text-[#e6fdf3] hover:bg-[#324b3f]'}
+    `}>
+      {IconImg ? (
+        <img src={IconImg} alt={text} className="w-4 h-4" />
+      ) : null}
+      <span>{text}</span>
+    </button>
+  );
+};
+
+const Sidebar = ({ isOpen, onClose, showAccountMenu, setShowAccountMenu, showNotifications, setShowNotifications, setShowPlansModal, seseGrindExpanded, setSeseGrindExpanded, currentPath }) => {
   return (
     <div>
         {/* Mobile Overlay */}
@@ -75,10 +77,14 @@ const Sidebar = ({ isOpen, onClose, showAccountMenu, setShowAccountMenu, showNot
           {/* Navigation */}
           <nav className="flex-1 overflow-y-auto py-2 scrollbar-hide">
             <div className="space-y-1 mb-6 px-4">
-              <NavItem iconImg={gitGrinderIcon} text="Grinder goal" />
-              <NavItem iconImg={openSourceProjectIcon} text="Open Source Projects" />
+              <div onClick={() => window.location.href = '/grinder-goal'}>
+                <NavItem iconImg={gitGrinderIcon} text="Grinder goal" path='/grinder-goal' currentPath={currentPath}/>
+              </div>
+              <div onClick={() => window.location.href = '/open-source-projects'}>
+                <NavItem iconImg={openSourceProjectIcon} text="Open Source Projects" path='/open-source-projects' currentPath={currentPath}/>
+              </div>
             </div>
-
+                  
             {/* Sese's grind section */}
             <div className="mb-6 text-[#e6fdf3] border-b border-[#324b3f] px-4 pb-2">
               <div className="flex items-center justify-between mb-2 px-2">
@@ -91,10 +97,18 @@ const Sidebar = ({ isOpen, onClose, showAccountMenu, setShowAccountMenu, showNot
               </div>
               {seseGrindExpanded && (
                 <div className="space-y-1 ml-8">
-                  <NavItem iconImg={selfGrindProjectsIcon} text="Self grind projects" active />
-                  <NavItem iconImg={opensourcegrinderIcon} text="Open source grinder projects" />
-                  <NavItem iconImg={brainstormIcon} text="Brainstorm" />
-                  <NavItem iconImg={trashIcon} text="Trash" />
+                  <div onClick={() => window.location.href = '/dashboard'}>
+                    <NavItem iconImg={selfGrindProjectsIcon} text="Self grind projects" path='/dashboard' currentPath={currentPath}/>
+                  </div>
+                  <div onClick={() => window.location.href = '/open-source-grinder-projects'}>
+                    <NavItem iconImg={opensourcegrinderIcon} text="Open source grinder projects" path='/open-source-grinder-projects' currentPath={currentPath}/>
+                  </div>
+                  <div onClick={() => window.location.href = '/brainstorm'}>
+                    <NavItem iconImg={brainstormIcon} text="Brainstorm" path='/brainstorm' currentPath={currentPath}/>
+                  </div>
+                  <div onClick={() => window.location.href = '/trash'}>
+                    <NavItem iconImg={trashIcon} text="Trash" path='/trash' currentPath={currentPath}/>
+                  </div>
                 </div>
               )}
             </div>
@@ -117,7 +131,7 @@ const Sidebar = ({ isOpen, onClose, showAccountMenu, setShowAccountMenu, showNot
             {/* Favorite */}
             <div className='p-2'>
               <h3 className="text-[#e6fdf3] text-sm font-semibold mb-2 px-2">Favorite</h3>
-              <NavItem iconImg={gridIcon} text="Ekda mobile app" />
+              <NavItem iconImg={gridIcon} text="Ekda mobile app" path='/ekda' currentPath={currentPath}/>
             </div>
           </nav>
         </aside>

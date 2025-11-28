@@ -152,6 +152,7 @@ const MainDashboard = () => {
         setShowPlansModal={setShowPlansModal}
         seseGrindExpanded={seseGrindExpanded}
         setSeseGrindExpanded={setSeseGrindExpanded}
+        currentPath={window.location.pathname}
       />
 
       {/* Main Content */}
