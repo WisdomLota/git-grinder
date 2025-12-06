@@ -5,6 +5,7 @@ import MainDashboard from './pages/MainDashboard'
 import SignUp from './pages/SignUp'
 import Trash from './pages/Trash';
 import OpenSourceGrinderProjects from './pages/OpenSourceGrinderProjects';
+import Brainstorm from './pages/Brainstorm';
 import './styles/App.css'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path='/dashboard' element={<MainDashboard />} />
           <Route path="/trash" element={<Trash />} />
           <Route path="/open-source-grinder-projects" element={<OpenSourceGrinderProjects />} />
+          <Route path="/brainstorm" element={<Brainstorm />} />
         </Routes>
       </Router>
     </>

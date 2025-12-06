@@ -9,13 +9,6 @@ const GrinderGoalModal = ({ onClose, onViewProgress = onClose, onNoted = onClose
 
         {/* Left Side - Text Content */}
         <div className="w-full lg:w-1/2 p-10 lg:p-16 flex flex-col justify-center bg-[#1b1f1f]">
-          <button
-            onClick={onClose}
-            className="absolute top-6 right-6 text-gray-500 hover:text-[#e6fdf3] transition z-10"
-          >
-            <X size={28} />
-          </button>
-
           <div className="max-w-md mx-auto lg:mx-0">
             <h2 className="text-[#e6fdf3] text-3xl poppins-semibold mb-2 leading-tight">
               Grinder Goal Update
