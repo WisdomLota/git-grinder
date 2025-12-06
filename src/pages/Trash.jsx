@@ -41,7 +41,7 @@ const Trash = () => {
               >
                 <Menu size={24} className="text-[#e6fdf3]" />
               </button>
-              <h1 className="text-[#e6fdf3] text-2xl poppins-semibold font-bold">Trash</h1>
+              <h1 className="text-[#e6fdf3] text-xl poppins-regular font-semibold">Trash</h1>
             </div>
           </div>
         </header>

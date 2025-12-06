@@ -1,8 +1,15 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const ProjectCard = ({ title, status, thumbnail, onSelect, isSelected }) => {
+
+    const navigate = useNavigate();
+
   return (
-    <div className="group relative bg-[#1b1f1f] rounded-lg overflow-hidden hover:border-2 hover:border-[#01ec87] transition-all cursor-pointer">
+    <div 
+    onClick={() => navigate(`/project/${id}`)}
+    className="group relative bg-[#1b1f1f] rounded-lg overflow-hidden hover:border-2 hover:border-[#01ec87] transition-all cursor-pointer"
+    >
       <div className="aspect-video bg-gradient-to-br from-teal-800 to-teal-900 relative overflow-hidden">
         {thumbnail}
       </div>

@@ -60,8 +60,6 @@ const OpenSourceGrinderProjects = () => {
 
   const projects = [
     { id: 1, title: 'Dev Mode playground', author: 'by Akbar Mirza and 2 others', likes: '2.5k', contributors: '89.3k', variant: 1 },
-    { id: 2, title: 'React Component Library', author: 'by Sarah Chen and 3 others', likes: '3.2k', contributors: '120k', variant: 2 },
-    { id: 3, title: 'API Integration Tool', author: 'by John Doe and 1 other', likes: '1.8k', contributors: '45k', variant: 3 },
   ];
 
   return (
@@ -146,6 +144,10 @@ const OpenSourceGrinderProjects = () => {
             ))}
           </div>
         </div>
+
+        <button className="absolute bottom-3 right-3 w-12 h-12 rounded-full bg-[#324b3f] text-[#e6fdf3] flex items-center justify-center hover:bg-gray-600">
+          ?
+        </button>
       </main>
 
       {showAccountMenu && <AccountMenu onClose={() => setShowAccountMenu(false)} onViewPlans={() => {

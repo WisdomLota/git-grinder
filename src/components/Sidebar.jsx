@@ -131,7 +131,9 @@ const Sidebar = ({ isOpen, onClose, showAccountMenu, setShowAccountMenu, showNot
             {/* Favorite */}
             <div className='p-2'>
               <h3 className="text-[#e6fdf3] text-sm font-semibold mb-2 px-2">Favorite</h3>
-              <NavItem iconImg={gridIcon} text="Ekda mobile app" path='/ekda' currentPath={currentPath}/>
+              <div onClick={() => window.location.href = '/project/ekda-mobile-app'}>
+                <NavItem iconImg={gridIcon} text="Ekda mobile app" path='/project/ekda-mobile-app' currentPath={currentPath}/>
+              </div>
             </div>
           </nav>
         </aside>

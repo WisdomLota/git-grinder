@@ -159,6 +159,10 @@ const Brainstorm = () => {
                 ))}
               </div>
             </div>
+
+            <button className="absolute bottom-3 right-3 w-12 h-12 rounded-full bg-[#324b3f] text-[#e6fdf3] flex items-center justify-center hover:bg-gray-600">
+              ?
+            </button>
         </main>
 
         {/* Modals and Panels */}
