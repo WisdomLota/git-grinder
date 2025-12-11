@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import gridIcon from '../assets/gridIcon.svg';
 import listIcon from '../assets/listIcon.svg';
 import gitThumbnailPattern1 from '../assets/gitThumbailPattern1.png';
@@ -41,6 +42,8 @@ const GitPatternThumbnail = ({ variant }) => {
 
 const Brainstorm = () => {
 
+    const navigate = useNavigate();
+
     const [activeTab, setActiveTab] = useState('recent');
     const [view, setView] = useState('grid');
     const [selectedProjects, setSelectedProjects] = useState([]);
@@ -55,6 +58,12 @@ const Brainstorm = () => {
       { id: 1, title: 'Ekda mobile app', status: 'Edited 10 days ago' },
       { id: 2, title: 'Ekda mobile app', status: 'Edited 10 days ago' }
     ];
+
+    const toggleProject = (id) => {
+      setSelectedProjects(prev => 
+        prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]
+      );
+    };
 
   return (
     <div className="flex h-screen bg-[#1b1f1f] overflow-hidden">
@@ -151,10 +160,16 @@ const Brainstorm = () => {
                 {projects.map((project) => (
                   <ProjectCard
                     key={project.id}
-                    {...project}
+                    id={project.id}
+                    title={project.title}
+                    status={project.status}
                     thumbnail={<GitPatternThumbnail variant={(project.id % 3) + 1} />}
                     isSelected={selectedProjects.includes(project.id)}
-                    onSelect={() => toggleProject(project.id)}
+                    onSelect={(e) => {
+                      e.stopPropagation();
+                      toggleProject(project.id);
+                    }}
+                    onClick={() => navigate(`/brainstorm/${project.id}`)}
                   />
                 ))}
               </div>

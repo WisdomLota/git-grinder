@@ -1,14 +1,10 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
 
-const ProjectCard = ({ title, status, thumbnail, onSelect, isSelected }) => {
-
-    const navigate = useNavigate();
-
+const ProjectCard = ({ id, title, status, thumbnail, onSelect, isSelected, onClick }) => {
   return (
     <div 
-    onClick={() => navigate(`/project/${id}`)}
-    className="group relative bg-[#1b1f1f] rounded-lg overflow-hidden hover:border-2 hover:border-[#01ec87] transition-all cursor-pointer"
+      onClick={onClick}
+      className="group relative bg-[#1b1f1f] rounded-lg overflow-hidden hover:border-2 hover:border-[#01ec87] transition-all cursor-pointer"
     >
       <div className="aspect-video bg-gradient-to-br from-teal-800 to-teal-900 relative overflow-hidden">
         {thumbnail}
@@ -19,6 +15,7 @@ const ProjectCard = ({ title, status, thumbnail, onSelect, isSelected }) => {
            type="checkbox" 
            checked={isSelected}
            onChange={onSelect}
+           onClick={(e) => e.stopPropagation()}
            className="w-5 h-5 rounded border-2 border-[#324b3f] bg-[#1b1f1f]/50 cursor-pointer"
          />
         </div>
@@ -28,7 +25,7 @@ const ProjectCard = ({ title, status, thumbnail, onSelect, isSelected }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProjectCard
+export default ProjectCard;
