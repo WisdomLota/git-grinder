@@ -1,6 +1,7 @@
 import gitGrinderLogo from "../assets/GG-logo.png";
 import { Github } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import githubLogo from "../assets/github.svg";
 
 const Home = () => {
 
@@ -22,7 +23,7 @@ const Home = () => {
         {/* Signup Button */}
         <div className="flex justify-center items-center" onClick={() => navigate('/check-inbox')}>
             <button className="group cursor-pointer bg-[#053235] hover:bg-teal-800 text-[#e6fdf3] font-medium px-12 py-3 rounded-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center">
-                <Github className="w-5 h-5 mr-2" />
+                <img src={githubLogo} alt="Github Logo" className="w-5 h-5 mr-2" />
                 Signup with Github
             </button>
         </div>
