@@ -4,6 +4,10 @@ import GitImagePattern from "../assets/gitImagePattern.png";
 import GitImagePattern2 from "../assets/gitImagePattern2.png";
 import GitImagePattern3 from "../assets/gitImagePattern3.png";
 import GitImagePattern4 from "../assets/gitImagePattern4.png";
+import AcolyteGrid from '../assets/acolyteGoal.png'; 
+import ProGrid from '../assets/proGoal.png';
+import TenXGrid from '../assets/10xDeveloperGoal.png';
+import DecorativeGrid from '../assets/decorativeGoal.png';
 import MainDashboard from './MainDashboard';
 import { useNavigate } from 'react-router-dom';
 
@@ -197,7 +201,7 @@ const SignUp = () => {
       <div className="min-h-screen bg-[#1b1f1f] flex">
         <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
           <div className="max-w-xl w-full">
-            <h1 className="text-2xl md:text-3xl poppins-bold text-white mb-4">
+            <h1 className="text-2xl md:text-4xl poppins-semibold text-white mb-4 leading-snug">
               How do you plan to use Git Grinder?
             </h1>
             <p className="text-gray-100 poppins-medium mb-8">If you'll use Git grinder for a few reasons, pick the main one.</p>
@@ -249,7 +253,7 @@ const SignUp = () => {
       <div className="min-h-screen bg-[#1b1f1f] flex">
         <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
           <div className="max-w-xl w-full">
-            <h1 className="text-2xl md:text-3xl poppins-bold text-white mb-4">
+            <h1 className="text-2xl md:text-4xl poppins-semibold text-white mb-4">
               {isSchool ? "What's your role at school?" : isWork ? "What's your role at Work?" : "What's your role?"}
             </h1>
             <p className="text-gray-100 poppins-medium mb-8">This helps us know what tips and resources to share with you.</p>
@@ -326,7 +330,7 @@ const SignUp = () => {
       <div className="min-h-screen bg-[#1b1f1f] flex">
         <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
           <div className="max-w-xl w-full">
-            <h1 className="text-2xl md:text-3xl poppins-bold text-white mb-4">
+            <h1 className="text-2xl md:text-4xl poppins-semibold text-white mb-4">
               What type or level of school?
             </h1>
             <p className="text-gray-100 poppins-medium mb-8">Pick the one that feels closest to your solution.</p>
@@ -383,7 +387,7 @@ const SignUp = () => {
       <div className="min-h-screen bg-[#1b1f1f] flex">
         <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
           <div className="max-w-xl w-full">
-            <h1 className="text-2xl md:text-3xl poppins-bold text-white mb-4">
+            <h1 className="text-2xl md:text-4xl poppins-semibold text-white mb-4">
               Will anyone else be joining you?
             </h1>
             <p className="text-gray-100 poppins-medium mb-8">You can invite others to grind with you.</p>
@@ -438,37 +442,32 @@ const SignUp = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {[
-              { name: 'Acolyte', density: 'sparse' },
-              { name: 'Pro', density: 'sparse' },
-              { name: '10x Developer', density: 'full' },
-              { name: 'Decorative', density: 'decorative' }
-            ].map((goal) => (
-              <button
-                key={goal.name}
-                onClick={() => handleInputChange('grinderGoal', goal.name)}
-                className={`p-6 rounded-lg border-2 transition-all ${
-                  formData.grinderGoal === goal.name
-                    ? 'border-emerald-400 bg-emerald-400/10'
-                    : 'border-gray-700 hover:border-emerald-400/50'
-                }`}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                    formData.grinderGoal === goal.name
-                      ? 'border-emerald-400'
-                      : 'border-gray-600'
-                  }`}>
-                    {formData.grinderGoal === goal.name && (
-                      <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
-                    )}
-                  </div>
-                  <span className="text-white text-xl font-medium">{goal.name}</span>
+                { name: 'Acolyte', img: AcolyteGrid },
+                { name: 'Pro', img: ProGrid },
+                { name: '10x Developer', img: TenXGrid },
+                { name: 'Decorative', img: DecorativeGrid }
+              ].map((goal) => (
+                <div key={goal.name} className="flex flex-col gap-2">
+                  <button
+                    onClick={() => handleInputChange('grinderGoal', goal.name)}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg border-2 transition-all ${
+                      formData.grinderGoal === goal.name
+                        ? 'border-[#01ec87] bg-[#01ec87]/10'
+                        : 'border-gray-700 hover:border-[#01ec87]/50'
+                    }`}
+                  >
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                      formData.grinderGoal === goal.name ? 'border-[#01ec87]' : 'border-gray-600'
+                    }`}>
+                      {formData.grinderGoal === goal.name && (
+                        <div className="w-3 h-3 rounded-full bg-[#01ec87]"></div>
+                      )}
+                    </div>
+                    <span className="text-white font-medium">{goal.name}</span>
+                  </button>
+                  <img src={goal.img} alt={goal.name} className="w-full rounded" />
                 </div>
-                <div className="flex flex-wrap gap-1">
-                  {generateContributionGrid(goal.density)}
-                </div>
-              </button>
-            ))}
+              ))}
           </div>
 
           <div className="flex justify-end">
