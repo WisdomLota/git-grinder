@@ -69,7 +69,7 @@ const GitPatternThumbnail = ({ variant }) => {
   if (variant === 1) {
     return (
       <div className="absolute inset-0">
-        <img src={gitThumbnailPattern1} alt="git-thumbnail" className='w-full'/>
+        <img src={gitThumbnailPattern1} alt="git-thumbnail" className='w-full h-full object-cover'/>
       </div>
     );
   }
@@ -77,14 +77,14 @@ const GitPatternThumbnail = ({ variant }) => {
   if (variant === 2) {
     return (
       <div className="absolute inset-0">
-        <img src={gitThumbnailPattern2} alt="git-thumbnail" className='w-full'/>
+        <img src={gitThumbnailPattern2} alt="git-thumbnail" className='w-full h-full object-cover'/>
       </div>
     );
   }
   
   return (
     <div className="absolute inset-0">
-      <img src={gitThumbnailPattern3} alt="git-thumbnail" className='w-full'/>
+      <img src={gitThumbnailPattern3} alt="git-thumbnail" className='w-full h-full object-cover'/>
     </div>
   );
 };
