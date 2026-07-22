@@ -6,7 +6,7 @@ const ProjectCard = ({ id, title, status, thumbnail, onSelect, isSelected, onCli
       onClick={onClick}
       className="group relative bg-[#1b1f1f] rounded-lg overflow-hidden hover:border-2 hover:border-[#01ec87] transition-all cursor-pointer"
     >
-      <div className="h-120 bg-gradient-to-br from-teal-800 to-teal-900 relative overflow-hidden">
+      <div className="h-80 bg-gradient-to-br from-teal-800 to-teal-900 relative overflow-hidden">
         {thumbnail}
       </div>
       <div className="p-4 flex items-start gap-2 border-x-2 border-b-2 border-[#01ec87]">
