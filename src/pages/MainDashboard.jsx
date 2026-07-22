@@ -103,7 +103,9 @@ const MainDashboard = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [seseGrindExpanded, setSeseGrindExpanded] = useState(true);
 
-  const [showProfilePreview, setShowProfilePreview] = useState(true);
+  const [showProfilePreview, setShowProfilePreview] = useState(
+    () => !localStorage.getItem('profilePreviewSeen')
+  );
   const [showGrinderGoal, setShowGrinderGoal] = useState(false);
 
   const projects = [
@@ -254,6 +256,7 @@ const MainDashboard = () => {
       {showProfilePreview && (
         <ProfilePreviewModal 
           onConfirm={() => {
+            localStorage.setItem('profilePreviewSeen', 'true');
             setShowProfilePreview(false);
             setShowGrinderGoal(true);
           }}

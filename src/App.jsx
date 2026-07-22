@@ -9,6 +9,7 @@ import Brainstorm from './pages/Brainstorm';
 import ProjectDetail from './pages/ProjectDetail';
 import BrainstormDetail from './pages/BrainstormDetail';
 import GrinderGoal from './pages/GrinderGoal'
+import OpenSourceProjects from './pages/OpenSourceProjects'
 import './styles/App.css'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/dashboard' element={<MainDashboard />} />
           <Route path="/trash" element={<Trash />} />
+          <Route path="/open-source-projects" element={<OpenSourceProjects />} />
           <Route path="/open-source-grinder-projects" element={<OpenSourceGrinderProjects />} />
           <Route path="/brainstorm" element={<Brainstorm />} />
           <Route path="/grinder-goal" element={<GrinderGoal />} />

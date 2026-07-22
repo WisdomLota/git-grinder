@@ -436,7 +436,7 @@ const SignUp = () => {
     return (
       <div className="min-h-screen bg-[#1b1f1f] p-8">
         <div className="max-w-6xl mx-auto my-12">
-          <h1 className="text-2xl md:text-3xl poppins-bold text-white mb-12">
+          <h1 className="text-2xl md:text-4xl poppins-semibold text-white mb-12">
             Which grinder goal would you like?
           </h1>
 
@@ -489,7 +489,7 @@ const SignUp = () => {
       <div className="min-h-screen bg-[#1b1f1f] flex">
         <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
           <div className="max-w-xl w-full">
-            <h1 className="text-2xl md:text-3xl poppins-bold text-white mb-4">
+            <h1 className="text-2xl md:text-4xl poppins-semibold text-white mb-4 lead">
               What would you like to do first?
             </h1>
             <p className="text-gray-100 text-lg poppins-medium mb-8">Select just one</p>
@@ -524,7 +524,7 @@ const SignUp = () => {
           </div>
         </div>
         <div className="hidden lg:block lg:w-1/2 relative bg-gradient-to-br from-teal-800 to-teal-900">
-          <GitPattern4 />
+          <GitPattern3 />
         </div>
       </div>
     );
